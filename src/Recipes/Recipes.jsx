@@ -43,7 +43,7 @@ const Recipes = () => {
       <div className="container mx-auto my-24 px-4">
         {/*  Title */}
         <div className="text-center space-y-4 px-4">
-          <h1 className="text-4xl font-bold">Our Recipes List</h1>
+          <h1 className="text-4xl font-bold">Our Recipes</h1>
           <p className="text-lg">
             Lorem ipsum dolor sit amet consectetur. Proin et feugiat senectus
             vulputate netus pharetra rhoncus. Eget <br /> urna volutpat
