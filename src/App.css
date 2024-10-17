@@ -1,0 +1,12 @@
+body {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.visited {
+  color: red;
+}
+
+.not-visited {
+  color: blue;
+}
