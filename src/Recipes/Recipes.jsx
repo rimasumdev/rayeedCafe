@@ -4,6 +4,8 @@ const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [orders, setOrders] = useState([]);
   const [cooking, setCooking] = useState([]);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
     fetch("recipes.json")
@@ -11,12 +13,31 @@ const Recipes = () => {
       .then((data) => setRecipes(data));
   }, []);
 
+  useEffect(() => {}, [orders]);
+
   const handleOrder = (recipe) => {
     const isDuplicate = orders.some(
       (item) => item.recipe_id === recipe.recipe_id
     );
     if (!isDuplicate) {
       setOrders([...orders, recipe]);
+      setToastMessage(
+        <>
+          <span className="font-bold text-2xl">{recipe.recipe_name}</span> added
+          to your order!
+        </>
+      );
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000); // Hide toast after 3 seconds
+    } else {
+      setToastMessage(
+        <>
+          <span className="font-bold text-2xl">{recipe.recipe_name}</span> is
+          already in your order!
+        </>
+      );
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
     }
   };
   const handlePreparing = (order) => {
@@ -184,6 +205,13 @@ const Recipes = () => {
           </div>
         </div>
       </div>
+      {showToast && (
+        <div className="toast toast-top toast-end">
+          <div className="alert bg-warning text-black">
+            <span>{toastMessage}</span>
+          </div>
+        </div>
+      )}
     </>
   );
 };
